@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Getter @Setter
 @Builder
 public class PatchCalendarRequest {
-        private Long id;
         private String title;
         private String description;
         private LocalDateTime startDateTime;

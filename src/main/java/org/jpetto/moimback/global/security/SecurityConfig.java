@@ -24,11 +24,12 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/h2-console/**")
-                        .ignoringRequestMatchers("/swagger-ui/**", "/v3/api-docs/**") // ✅ API 문서도 CSRF 제외
+                        .ignoringRequestMatchers("/swagger-ui/**", "/v3/api-docs/**") // API 문서도 CSRF 제외
+                        .ignoringRequestMatchers("/api/**")
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/api/**",
+                                "/api/v1/**",
                                 "/h2-console/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",

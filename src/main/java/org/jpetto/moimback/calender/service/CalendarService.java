@@ -28,7 +28,7 @@ public class CalendarService {
                         .accountId(0L)
                         .startDateTime(createCalendarRequest.startDateTime())
                         .endDateTime(createCalendarRequest.endDateTime())
-                        .color(createCalendarRequest.color())
+                        .color(nvl(createCalendarRequest.color()))
                         .location(nvl(createCalendarRequest.location()))
                         .build());
     }
@@ -39,8 +39,8 @@ public class CalendarService {
 
     // 달력 이벤트 수정
     @Transactional
-    public void patchCalendar(PatchCalendarRequest patchCalendarRequest) {
-        Calendar calendar = calendarRepository.findById(patchCalendarRequest.getId()).orElse(null);
+    public void patchCalendar(Long calendarId, PatchCalendarRequest patchCalendarRequest) {
+        Calendar calendar = calendarRepository.findById(calendarId).orElse(null);
 
         if (calendar == null) {
             throw new IllegalArgumentException("Calendar not found");
